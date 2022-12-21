@@ -2,4 +2,5 @@
 #board {
     flex-grow: 1;
     min-height: 800px;
+    position: relative;
 }

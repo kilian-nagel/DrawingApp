@@ -1,7 +1,7 @@
 import { dblClick } from "@testing-library/user-event/dist/click";
 import React from "react";
 
-export let pencilColor:string = "abcdef";
+export let pencilColor:string = "000000";
 
 export function handleColorPick(e: React.ChangeEvent<HTMLInputElement>){
     setPencilColor(e.currentTarget.value);
