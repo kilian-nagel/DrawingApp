@@ -1,9 +1,31 @@
 import { pencilColor } from "./color-picker";
 import { handlePencilClick } from "./pencil";
+import { handleEraserClick } from "./eraser";
+import React from "react";
 
 let board_pixels:string[][] = [];
 let board:HTMLElement;
 export let activeTool = 0;
+
+/* Click event redirection
+=============== */
+
+export function changeActiveTool(n:number){
+    console.log(activeTool);
+    activeTool = n;
+}
+
+/* When a click event is fired on the board , 
+the function determines wich tool has to be activated 
+( pencil , eraser...) */
+export function redirectClickEvent(e:React.MouseEvent){
+    if(activeTool==0){handlePencilClick(e);}
+    else if(activeTool==1){handleEraserClick(e);}
+}
+
+
+/* Board stuff 
+================ */
 
 export function initBoardPixels(){
     board = document.getElementById("board") as HTMLElement;
@@ -16,26 +38,12 @@ export function initBoardPixels(){
     
 }
 
-export function changeActiveTool(n:number){
-    activeTool = n;
-}
-
-/* When a click event is fired on the board , 
-the function determines wich tool has to be activated 
-( pencil , eraser...) */
-export function redirectClickEvent(){
-    const tools = {
-        0:handlePencilClick
-    }
-}
+/* Pixel stuff
+=============== */
 
 export function parsePixel(e: React.MouseEvent){
     const pixelPosition = getPixelPosition(e);
-    if(isPixelOnBoard(pixelPosition)){
-        changePixelColor(pixelPosition);
-    } else {
-        createPixelElt(pixelPosition);
-    }  
+    createPixelElt(pixelPosition);
 }
 
 function getPixelPosition(e: React.MouseEvent){
