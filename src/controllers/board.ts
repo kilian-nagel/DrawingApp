@@ -41,12 +41,12 @@ export function initBoardPixels(){
 /* Pixel stuff
 =============== */
 
-export function parsePixel(e: React.MouseEvent){
+export function parsePixel(e: React.MouseEvent | MouseEvent){
     const pixelPosition = getPixelPosition(e);
     createPixelElt(pixelPosition);
 }
 
-function getPixelPosition(e: React.MouseEvent){
+function getPixelPosition(e: React.MouseEvent | MouseEvent){
     let pixel_pos_y = e.pageY-board.offsetTop;
     let pixel_pos_x = e.pageX;
     return [pixel_pos_x,pixel_pos_y];
@@ -59,8 +59,8 @@ function createPixelElt(pixel_position:number[]){
     elt.style.position = "absolute";
     elt.style.left = pixel_position[0]+"px";
     elt.style.top = pixel_position[1]+"px";
-    elt.style.width = "5px";
-    elt.style.height = "5px";
+    elt.style.width = "30px";
+    elt.style.height = "30px";
     board.appendChild(elt);
     
     board_pixels[pixel_position[1]][pixel_position[0]]= pencilColor;

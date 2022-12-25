@@ -2,7 +2,6 @@
 import React from "react";
 import {changeActiveTool, parsePixel} from "./board";
 
-const board = document.getElementById("#board") as HTMLElement;
 let currentMouseEvent:MouseEvent;
 
 export function handlePencilClick(e: React.MouseEvent){
@@ -17,20 +16,27 @@ export function setMouseState(bool:boolean){
 export function handlePencilHoldEvent(bool:boolean,e:React.MouseEvent){
     setMouseState(bool)
     if(isMouseDown){
+        startMouseEventTracker();
         let interval = setInterval(()=>{
             console.log('hi');
-            parsePixel(e);
+            parsePixel(currentMouseEvent);
             if(!isMouseDown){
                 clearInterval(interval);}
-        },50);
+        },1);
+    } else {
+        endMouseEventTracker();
     }
 }
 
 function startMouseEventTracker(){
+    const board = document.getElementById("board") as HTMLElement;
+console.log(board);
     board.addEventListener('mousemove',(e)=>handleMouseMove(e));
 }
 
 function endMouseEventTracker(){
+    const board = document.getElementById("board") as HTMLElement;
+console.log(board);
     board.removeEventListener('mousemove',handleMouseMove);
 }
 
