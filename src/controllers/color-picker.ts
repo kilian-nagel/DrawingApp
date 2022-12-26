@@ -6,7 +6,6 @@ export let pencilColor:string = "000000";
 export function handleColorPick(e: React.ChangeEvent<HTMLInputElement>){
     console.log(e.currentTarget.value);
     setPencilColor(e.currentTarget.value);
-    setInputColor();
 }
 
 function parsePencilColor(color:string):string{
@@ -21,10 +20,4 @@ function parsePencilColor(color:string):string{
 
 export function setPencilColor(color:string){
     pencilColor = parsePencilColor(color);
-}
-
-// Inutile
-function setInputColor(){
-    console.log(pencilColor);
-    (document.querySelector(".color-picker") as HTMLInputElement).value = pencilColor;
 }
