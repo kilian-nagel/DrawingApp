@@ -1,26 +1,25 @@
 import { pencilColor } from "./color-picker";
-import { handlePencilClick } from "./pencil";
-import { handleEraserClick } from "./eraser";
+import { handlePencilClickEvent } from "./pencil";
+import { eraserColor, handleEraserClickEvent } from "./eraser";
 import React from "react";
 
+export let activeTool = 0;
 let board_pixels:string[][] = [];
 let board:HTMLElement;
-export let activeTool = 0;
 
 /* Click event redirection
 =============== */
 
 export function changeActiveTool(n:number){
-    console.log(activeTool);
     activeTool = n;
 }
 
 /* When a click event is fired on the board , 
 the function determines wich tool has to be activated 
 ( pencil , eraser...) */
-export function redirectClickEvent(e:React.MouseEvent){
-    if(activeTool==0){handlePencilClick(e);}
-    else if(activeTool==1){handleEraserClick(e);}
+export function redirectClickEvent(event:React.MouseEvent,isMouseDown:boolean){
+    if(activeTool===0){handlePencilClickEvent(event,isMouseDown);}
+    else if(activeTool===1){handleEraserClickEvent(event,isMouseDown);}
 }
 
 
@@ -53,9 +52,14 @@ function getPixelPosition(e: React.MouseEvent | MouseEvent){
 }
 
 function createPixelElt(pixel_position:number[]){
+
+    let background="FFFF";
+    if(activeTool===0){background=pencilColor;}
+    else if(activeTool===1){background=eraserColor}
+
     let elt = document.createElement("div") as HTMLElement;
     elt.classList.add("pixel-"+pixel_position[0]+"-"+pixel_position[1]);
-    elt.style.background = `#${pencilColor}`
+    elt.style.background = `#${background}`;
     elt.style.position = "absolute";
     elt.style.left = pixel_position[0]+"px";
     elt.style.top = pixel_position[1]+"px";

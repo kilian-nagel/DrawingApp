@@ -1,45 +1,41 @@
 
 import React from "react";
-import {changeActiveTool, parsePixel} from "./board";
+import {parsePixel} from "./board";
 
 let currentMouseEvent:MouseEvent;
-
-export function handlePencilClick(e: React.MouseEvent){
-    parsePixel(e);
-}
-
 let isMouseDown = false;
-export function setMouseState(bool:boolean){
-    isMouseDown = bool;
+
+export function handlePencilClickEvent(e:React.MouseEvent,bool:boolean){
+    setMouseState(bool);
+    handleMouseMoveEventTracker();
 }
 
-export function handlePencilHoldEvent(bool:boolean,e:React.MouseEvent){
-    setMouseState(bool)
+function handleMouseMoveEventTracker(){
     if(isMouseDown){
-        startMouseEventTracker();
+        startMouseMoveEventTracker();
         let interval = setInterval(()=>{
-            console.log('hi');
             parsePixel(currentMouseEvent);
-            if(!isMouseDown){
-                clearInterval(interval);}
+            if(!isMouseDown){clearInterval(interval);}
         },1);
     } else {
-        endMouseEventTracker();
+        endMouseMoveEventTracker();
     }
 }
 
-function startMouseEventTracker(){
-    const board = document.getElementById("board") as HTMLElement;
-console.log(board);
-    board.addEventListener('mousemove',(e)=>handleMouseMove(e));
+function setMouseState(bool:boolean){
+    isMouseDown = bool;
 }
 
-function endMouseEventTracker(){
+function startMouseMoveEventTracker(){
     const board = document.getElementById("board") as HTMLElement;
-console.log(board);
-    board.removeEventListener('mousemove',handleMouseMove);
+    board.addEventListener('mousemove',(e)=>handleMouseMoveEvent(e));
 }
 
-function handleMouseMove(e:MouseEvent){
+function endMouseMoveEventTracker(){
+    const board = document.getElementById("board") as HTMLElement;
+    board.removeEventListener('mousemove',handleMouseMoveEvent);
+}
+
+function handleMouseMoveEvent(e:MouseEvent){
     currentMouseEvent = e;
 }

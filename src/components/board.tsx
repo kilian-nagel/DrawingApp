@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { initBoardPixels, redirectClickEvent } from '../controllers/board';
-import { handlePencilClick, handlePencilHoldEvent } from '../controllers/pencil';
+import { handlePencilClickEvent } from '../controllers/pencil';
 import "../styles/board.css";
 
 function Board() {
@@ -12,7 +12,7 @@ function Board() {
         }
     },[])
     return (
-        <div className="board" id="board" onMouseUp={(e)=>handlePencilHoldEvent(false,e)} onMouseDown={(e)=>handlePencilHoldEvent(true,e)} onClick={(e)=>redirectClickEvent(e)}>
+        <div className="board" id="board" onMouseUp={(e)=>handlePencilClickEvent(e,false)} onMouseDown={(e)=>handlePencilClickEvent(e,true)}>
 
         </div>
     );
