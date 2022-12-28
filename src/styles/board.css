@@ -4,3 +4,10 @@
     min-height: 800px;
     position: relative;
 }
+
+.pixel {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+}

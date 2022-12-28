@@ -1,6 +1,6 @@
 
 import React from "react";
-import {parsePixel} from "./board";
+import {parsePixel} from "./pixel";
 
 let currentMouseEvent:MouseEvent;
 let isMouseDown = false;
