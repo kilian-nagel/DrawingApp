@@ -1,21 +1,23 @@
-import { activeTool, board_pixels , board } from "./board";
+import { activeTool, board_pixels , board, currentPixelSize } from "./board";
 import { pencilColor } from "./color-picker";
 import { eraserColor } from "./eraser";
 
 export function parsePixel(e: React.MouseEvent | MouseEvent){
-    const pixelPosition = getPixelPosition(e);
-    const element = createPixelElt(pixelPosition);
-    addPixelEltToBoard(element);
-    addPixelToBoardArray(pixelPosition);
+    const clickPosition = getClickPosition(e);
+    const pixelElement = createPixelElement(clickPosition);
+    addPixelEltToBoard(pixelElement);
+    addPixelToBoardArray(clickPosition);
 }
 
-export function createPixelElt(pixel_position:number[]){
+function createPixelElement(position:number[]){
     let elt = document.createElement("div") as HTMLElement;
     elt.classList.add("pixel");
-    elt.classList.add("pixel-"+pixel_position[0]+"-"+pixel_position[1]);
+    elt.classList.add("pixel-"+position[0]+"-"+position[1]);
     elt.style.background = `#${getCurrentColor()}`;
-    elt.style.left = pixel_position[0]+"px";
-    elt.style.top = pixel_position[1]+"px";
+    elt.style.width = currentPixelSize + "px";
+    elt.style.height = currentPixelSize + "px";
+    elt.style.left = position[0]+"px";
+    elt.style.top = position[1]+"px";
     return elt;
 }
 
@@ -32,10 +34,10 @@ function addPixelToBoardArray(pixel_position:number[]){
     board_pixels[pixel_position[1]][pixel_position[0]]= pencilColor;
 }
 
-export function getPixelPosition(e: React.MouseEvent | MouseEvent):number[]{
-    let pixel_pos_y = e.pageY-board.offsetTop;
-    let pixel_pos_x = e.pageX;
-    return [pixel_pos_x,pixel_pos_y];
+function getClickPosition(e: React.MouseEvent | MouseEvent):number[]{
+    let y = e.pageY-board.offsetTop;
+    let x = e.pageX;
+    return [x,y];
 }
 
 function getCurrentColor():string{
