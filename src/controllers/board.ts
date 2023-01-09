@@ -8,7 +8,7 @@ export let board_pixels:string[][] = [];
 export let board:HTMLElement;
 
 export function changeActiveTool(n:number){
-    activeTool = n;
+    if(n>=0 && n%1==0){activeTool = n;}
 }
 
 export function changeCurrentPixelSize(e:React.ChangeEvent<HTMLSelectElement>){

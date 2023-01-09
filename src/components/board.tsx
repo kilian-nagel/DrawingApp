@@ -12,7 +12,7 @@ function Board() {
         }
     },[])
     return (
-        <div className="board" id="board" onMouseUp={(e)=>handlePencilClickEvent(e,false)} onMouseDown={(e)=>handlePencilClickEvent(e,true)}>
+        <div className="board" id="board" data-testid="board" onMouseUp={(e)=>handlePencilClickEvent(e,false)} onMouseDown={(e)=>handlePencilClickEvent(e,true)}>
         </div>
     );
 }
