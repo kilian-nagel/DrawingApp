@@ -12,9 +12,7 @@ export function changeActiveTool(n:number){
 }
 
 export function changeCurrentPixelSize(e:React.ChangeEvent<HTMLSelectElement>){
-    console.log(e.currentTarget.value); 
     currentPixelSize = parseInt(e.currentTarget.value);
-    console.log(currentPixelSize);
 }
 
 export function resetBoard(){

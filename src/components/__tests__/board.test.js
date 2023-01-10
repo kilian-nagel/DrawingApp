@@ -1,7 +1,10 @@
-import { render , screen , cleanup} from "@testing-library/react";
+import { render , screen , cleanup, fireEvent} from "@testing-library/react";
 import '@testing-library/jest-dom'
 import Board from "../board";
-import { changeActiveTool , activeTool } from "../../controllers/board";
+import Drawbar from "../drawbar";
+import { changeActiveTool , activeTool ,currentPixelSize, board, board_pixels, changeCurrentPixelSize, resetBoard, initBoardPixels } from "../../controllers/board";
+
+afterEach(cleanup);
 
 describe("board component",()=>{
     test("board is in the document",()=>{
@@ -41,6 +44,40 @@ describe("board controllers",()=>{
             changeActiveTool(10.8);
             expect(activeTool).toBeGreaterThanOrEqual(0);
             expect(activeTool).toBe(tool);
+        });
+    });
+    describe("ChangePixelSize function",()=>{
+        it("currentPixelSize initialized to 30",()=>{
+            render(<Board></Board>);
+            expect(currentPixelSize).toBe(30);
+        });
+        it("Change pixel size when dropdown option is clicked",()=>{
+            render(<Drawbar></Drawbar>);
+            const select = screen.getByTestId("size-select");
+            fireEvent.change(select,{target:{value:"4"}});
+            expect(currentPixelSize).toBe(4);
         })
     })
+    describe("ResetBoard function",()=>{
+        it("initialize all values correctly",()=>{
+            render(<Board></Board>);
+            
+            const board = screen.getByTestId("board");
+            board.innerHTML="hello";
+            changeActiveTool(2);
+
+            resetBoard();
+            expect(activeTool).toBe(0);
+            expect(board.innerHTML="");
+        })
+    })
+    /*describe("InitBoardPixels function",()=>{
+        //render(<Board></Board>)
+        initBoardPixels();
+        for(let i=0;i<board_pixels.length;i++){
+            for(let y=0;y<board_pixels.length;y++){
+                expect(board_pixels[i][y]).toBe("FFFFFF");
+            }
+        }
+    })*/
 })
