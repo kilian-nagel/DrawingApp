@@ -27,7 +27,7 @@ function Drawbar() {
                     <option value="48" data-testid="size-select-48">48px</option>
                     <option value="64" data-testid="size-select-64">64px</option>
                 </select>
-                <input className='color-picker' type="color" id="favcolor" onInput={handleColorPick} name="favcolor" value={pencilColor}/>
+                <input className='color-picker' data-testid="color-picker" type="color" id="favcolor" onInput={handleColorPick} name="favcolor" value={pencilColor}/>
             </div>
         </div>
     );
