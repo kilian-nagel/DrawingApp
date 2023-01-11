@@ -71,13 +71,15 @@ describe("board controllers",()=>{
             expect(board.innerHTML="");
         })
     })
-    /*describe("InitBoardPixels function",()=>{
-        //render(<Board></Board>)
-        initBoardPixels();
-        for(let i=0;i<board_pixels.length;i++){
-            for(let y=0;y<board_pixels.length;y++){
-                expect(board_pixels[i][y]).toBe("FFFFFF");
+    describe("InitBoardPixels function",()=>{
+        it("board_pixels array is correctly initialized",()=>{
+            render(<Board></Board>);
+            initBoardPixels();
+            for(let i=0;i<board_pixels.length;i++){
+                for(let y=0;y<board_pixels.length;y++){
+                    expect(board_pixels[i][y]).toBe("FFFFFF");
+                }
             }
-        }
-    })*/
+        })
+    })
 })
