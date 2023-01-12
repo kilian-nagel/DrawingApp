@@ -11,7 +11,7 @@ function Drawbar() {
                 <button aria-label='sélectionner le pinceau' onClick={()=>changeActiveTool(0)}>
                     <i className="fa-solid fa-pencil fa-1x"></i>       
                 </button>
-                <button aria-label='sélectionner la gomme' onClick={()=>changeActiveTool(1)}>
+                <button aria-label='sélectionner la gomme' data-testid="eraser" onClick={()=>changeActiveTool(1)}>
                     <i className="fa-solid fa-eraser fa-1x"></i>
                 </button>
                 <button aria-label='réinitialiser le tableau' onClick={()=>resetBoard()}>
