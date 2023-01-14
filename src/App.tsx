@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './components/navbar';
 import Drawbar from './components/drawbar';
 import Board from './components/board';
