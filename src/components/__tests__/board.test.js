@@ -2,7 +2,7 @@ import { render , screen , cleanup, fireEvent} from "@testing-library/react";
 import '@testing-library/jest-dom'
 import Board from "../board";
 import Drawbar from "../drawbar";
-import { changeActiveTool , activeTool ,currentPixelSize, board, board_pixels, changeCurrentPixelSize, resetBoard, initBoardPixels } from "../../controllers/board";
+import { changeActiveTool , activeTool ,currentPixelSize, board_pixels, resetBoard, initBoardPixels } from "../../controllers/board";
 
 afterEach(cleanup);
 

@@ -1,5 +1,3 @@
-
-import { parse } from "path";
 import React from "react";
 import { board, board_pixels } from "./board";
 import {parsePixel} from "./pixel";

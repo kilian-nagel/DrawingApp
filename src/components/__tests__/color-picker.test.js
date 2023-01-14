@@ -1,10 +1,7 @@
 import { render , screen , cleanup, fireEvent} from "@testing-library/react";
 import '@testing-library/jest-dom';
 import Drawbar from "../drawbar";
-import Board from "../board";
-import { handleColorPick, parsePencilColor, pencilColor, setPencilColor } from "../../controllers/color-picker";
-import { reduceEachLeadingCommentRange } from "typescript";
-import { exec } from "child_process";
+import { parsePencilColor, pencilColor, setPencilColor } from "../../controllers/color-picker";
 
 afterEach(cleanup);
 
@@ -33,7 +30,7 @@ describe("color-picker controller",()=>{
     it("handleColorPick handle mouse change event when it is fired",()=>{
         render(<Drawbar/>);
         const colorPicker = screen.getByTestId("color-picker");
-        fireEvent.change(colorPicker,{target:{value:"BBBBBB"}});
+        fireEvent.change(colorPicker,{target:{value:"111111"}});
         expect(pencilColor).toBe("BBBBBB");
     })
 })
