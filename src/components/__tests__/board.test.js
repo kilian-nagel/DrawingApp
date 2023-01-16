@@ -7,14 +7,10 @@ import { changeActiveTool , activeTool ,currentPixelSize, board_pixels, resetBoa
 afterEach(cleanup);
 
 describe("board component",()=>{
-    it("board is in the document",()=>{
+    test("board is in the document",()=>{
         render(<Board/>);
-        render.createSn
         const board = screen.getByTestId("board");
         expect(board).toBeInTheDocument(); 
-    })
-    it("board renders correctly",()=>{
-        renderer
     })
 })
 
