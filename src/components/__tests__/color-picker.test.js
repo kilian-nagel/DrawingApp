@@ -1,16 +1,22 @@
 import { render , screen , cleanup, fireEvent} from "@testing-library/react";
+import renderer from "react-test-renderer";
 import '@testing-library/jest-dom';
 import Drawbar from "../drawbar";
-import { parsePencilColor, pencilColor, setPencilColor } from "../../controllers/color-picker";
+import { handleColorPick, parsePencilColor, pencilColor, setPencilColor } from "../../controllers/color-picker";
 
 afterEach(cleanup);
 
 describe("color-picker HTMLelement",()=>{
-    it("color-picker is in the document",()=>{
+    it("is in the document",()=>{
         render(<Drawbar/>);
         const colorPicker = screen.getByTestId("color-picker");
         expect(colorPicker).toBeInTheDocument();
-    })
+    });
+    it("renders correctly",()=>{
+        const tree = renderer.create(<input className='color-picker' data-testid="color-picker" type="color" id="favcolor" onInput={handleColorPick} name="favcolor" value={pencilColor}/>
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 })
 
 describe("color-picker controller",()=>{
@@ -30,7 +36,7 @@ describe("color-picker controller",()=>{
     it("handleColorPick handle mouse change event when it is fired",()=>{
         render(<Drawbar/>);
         const colorPicker = screen.getByTestId("color-picker");
-        fireEvent.change(colorPicker,{target:{value:"111111"}});
+        fireEvent.change(colorPicker,{target:{value:"BBBBBB"}});
         expect(pencilColor).toBe("BBBBBB");
     })
 })

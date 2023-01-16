@@ -1,4 +1,5 @@
 import { render , screen , cleanup, fireEvent} from "@testing-library/react";
+import renderer from "react-test-renderer";
 import '@testing-library/jest-dom';
 import Drawbar from "../drawbar";
 import { eraserColor } from "../../controllers/eraser";
@@ -12,6 +13,12 @@ describe("eraser HTML Element",()=>{
         render(<Drawbar/>);
         const eraser = screen.getByTestId("eraser");
         expect(eraser).toBeInTheDocument();
+    })
+    it("color picker renders correctly",()=>{
+        render(<Drawbar/>);
+        const eraser = screen.getByTestId("eraser");
+        const tree = renderer.create(eraser).toJSON();
+        expect(tree).toMatchSnapshot();
     })
 })
 

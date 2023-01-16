@@ -2,15 +2,20 @@ import { render , screen , cleanup, fireEvent} from "@testing-library/react";
 import '@testing-library/jest-dom'
 import Board from "../board";
 import Drawbar from "../drawbar";
+import renderer from "react-test-renderer";
 import { changeActiveTool , activeTool ,currentPixelSize, board_pixels, resetBoard, initBoardPixels } from "../../controllers/board";
 
 afterEach(cleanup);
 
 describe("board component",()=>{
-    test("board is in the document",()=>{
+    it("board is in the document",()=>{
         render(<Board/>);
         const board = screen.getByTestId("board");
         expect(board).toBeInTheDocument(); 
+    })
+    it("board renders correctly",()=>{
+        const tree = renderer.create(<Board/>).toJSON();
+        expect(tree).toMatchSnapshot();
     })
 })
 

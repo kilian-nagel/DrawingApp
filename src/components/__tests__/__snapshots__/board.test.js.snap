@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`board component board renders correctly 1`] = `
+<div
+  className="board"
+  data-testid="board"
+  id="board"
+  onMouseDown={[Function]}
+  onMouseUp={[Function]}
+/>
+`;
