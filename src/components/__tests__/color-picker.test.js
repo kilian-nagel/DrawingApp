@@ -13,8 +13,8 @@ describe("color-picker HTMLelement",()=>{
         expect(colorPicker).toBeInTheDocument();
     });
     it("renders correctly",()=>{
-        const tree = renderer.create(<input className='color-picker' data-testid="color-picker" type="color" id="favcolor" onInput={handleColorPick} name="favcolor" value={pencilColor}/>
-        ).toJSON();
+        render(<Drawbar/>);
+        const tree = renderer.create(screen.getByTestId("color-picker").outerHTML).toJSON();
         expect(tree).toMatchSnapshot();
     });
 })

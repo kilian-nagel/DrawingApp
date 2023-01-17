@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eraser HTML Element color picker renders correctly 1`] = `"<button aria-label=\\"sélectionner la gomme\\" data-testid=\\"eraser\\"><i class=\\"fa-solid fa-eraser fa-1x\\"></i></button>"`;

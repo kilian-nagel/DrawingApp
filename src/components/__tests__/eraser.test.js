@@ -16,8 +16,7 @@ describe("eraser HTML Element",()=>{
     })
     it("color picker renders correctly",()=>{
         render(<Drawbar/>);
-        const eraser = screen.getByTestId("eraser");
-        const tree = renderer.create(eraser).toJSON();
+        const tree = renderer.create(screen.getByTestId("eraser").outerHTML).toJSON();
         expect(tree).toMatchSnapshot();
     })
 })
@@ -28,10 +27,10 @@ describe("eraser controller",()=>{
         expect(eraserColor).toBe("FFFFFF");
     })
     it("on click eraser should erase",()=>{
-        render(<Board/>);
+        render(<Board></Board>);
         changeActiveTool(1);
         initBoardPixels();
-
+        let length = board_pixels.length;
         board_pixels[120][100]="AFAFAF";
         const board = screen.getByTestId("board");
         fireEvent.click(board,{clientX:100,clientY:120});

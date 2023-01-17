@@ -2,7 +2,7 @@
 import { pencilColor } from '../controllers/color-picker';
 import {handleColorPick} from "../controllers/color-picker";
 import { changeActiveTool, changeCurrentPixelSize, resetBoard } from '../controllers/board';
-import "../styles/drawbar.css";
+//import "../styles/drawbar.css";
 
 function Drawbar() {
     return ( 
