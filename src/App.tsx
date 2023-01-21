@@ -4,6 +4,7 @@ import Board from './components/board';
 import Footer from './components/footer';
 import "./styles/style.css";
 import "./styles/normalize.css";
+import React from 'react';
 
 function App() {
   return (

@@ -28,6 +28,7 @@ describe("eraser controller",()=>{
     })
     it("on click eraser should erase",()=>{
         render(<Board></Board>);
+        debugger;
         changeActiveTool(1);
         initBoardPixels();
         let length = board_pixels.length;
